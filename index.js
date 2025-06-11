@@ -1,10 +1,6 @@
 //Test
 console.log('script loaded');
 
-//PIANO SECTION
-const form = document.getElementById("signupForm");
-const popup = document.getElementById("popup");
-
 //CURSOR SECTION
 document.addEventListener("DOMContentLoaded", () => {
     const cursor = document.getElementById("circularcursor");
@@ -39,42 +35,43 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-form.addEventListener("submit", function (e) {
-    e.preventDefault();
+// FORM VALIDATION SECTION
+const form = document.getElementById("signupForm");
 
+form.addEventListener("submit", function (e) {
     // Clear previous errors
     document.getElementById("usernameError").textContent = "";
     document.getElementById("emailError").textContent = "";
-    document.getElementById("passwordError").textContent = "";
+    document.getElementById("timeError").textContent = "";
 
     let valid = true;
 
-    // Simple validation
-    const username = document.getElementById("username");
+    // Get the correct form fields that exist in your HTML
+    const name = document.getElementById("name");
     const email = document.getElementById("email");
-    const password = document.getElementById("password");
+    const time = document.getElementById("time");
 
-    if (username.value.length < 4) {
-    document.getElementById("usernameError").textContent = "Username must be at least 4 characters.";
-    valid = false;
+    // Validate name (you called it username in error div, but field is name)
+    if (name.value.trim().length < 3) {
+        document.getElementById("usernameError").textContent = "Name must be at least 3 characters.";
+        valid = false;
     }
 
-    if (!email.value.includes("@")) {
-    document.getElementById("emailError").textContent = "Enter a valid email.";
-    valid = false;
+    // Validate email
+    if (!email.value.includes("@") || email.value.trim() === "") {
+        document.getElementById("emailError").textContent = "Enter a valid email.";
+        valid = false;
     }
 
-    if (password.value.length < 6) {
-    document.getElementById("passwordError").textContent = "Password must be at least 6 characters.";
-    valid = false;
+    // Validate meeting time
+    if (time.value === "") {
+        document.getElementById("timeError").textContent = "Please select a meeting time.";
+        valid = false;
     }
 
-    if (valid) {
-    popup.style.display = "flex";
-    form.reset();
+    // Only prevent submission if validation fails
+    if (!valid) {
+        e.preventDefault();
     }
+    // If valid is true, the form will submit normally to Formspree
 });
-
-function closePopup() {
-    popup.style.display = "none";
-}
