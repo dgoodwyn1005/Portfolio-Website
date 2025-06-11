@@ -1,0 +1,825 @@
+/* ================================================== */
+/* UNIFIED BASKETBALL CSS - MATCHES IMPROVED SYSTEM */
+/* ================================================== */
+
+:root {
+  /* Primary Color Palette */
+  --davys-gray: #494947;
+  --davys-gray-light: rgba(73, 73, 71, 0.08);
+  --davys-gray-darker: #3a3a38;
+  --cream: #eaefbd;
+  --cream-light: #f2f7c7;
+  --coral: #f78e69;
+  --coral-light: #f9a085;
+  --coral-dark: #e5745a;
+  --cool-gray: #8b94a3;
+  --cool-gray-light: #a5adb8;
+  --cool-gray-dark: #707a87;
+  --imperial-red: #f93943;
+  --imperial-red-dark: #d62c35;
+  
+  /* Semantic Colors */
+  --text-primary: var(--davys-gray);
+  --text-secondary: var(--cool-gray);
+  --text-light: var(--cream);
+  --background-primary: var(--cream);
+  --background-secondary: var(--cool-gray);
+  --accent-primary: var(--coral);
+  --accent-secondary: var(--imperial-red);
+  --border-color: var(--cool-gray-light);
+  
+  /* Spacing */
+  --spacing-xs: 5px;
+  --spacing-sm: 10px;
+  --spacing-md: 20px;
+  --spacing-lg: 40px;
+  --spacing-xl: 60px;
+  
+  /* Border Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  
+  /* Shadows */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.12);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.15);
+  --shadow-hover: 0 8px 32px rgba(0, 0, 0, 0.2);
+  
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+}
+
+/* ========================== */
+/* RESET + GLOBAL STYLES */
+/* ========================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+*:hover,
+*:focus {
+  cursor: none !important;
+}
+
+html, body {
+  height: 100%;
+  cursor: none;
+  font-family: 'Saira', sans-serif;
+  line-height: 1.6;
+  color: var(--text-light);
+  background: none;
+  scroll-behavior: smooth;
+}
+
+/* ========================== */
+/* CURSOR SYSTEM */
+/* ========================== */
+#circularcursor {
+  position: fixed;
+  top: 2px;
+  left: 5px;
+  width: 10px;
+  height: 10px;
+  background-color: var(--cream);
+  border: 1px solid var(--davys-gray);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform var(--transition-fast), 
+              background-color var(--transition-normal), 
+              width var(--transition-normal), 
+              height var(--transition-normal);
+}
+
+#circularcursor.hovered {
+  transform: scale(1.8);
+  background-color: var(--imperial-red);
+  border-color: var(--imperial-red-dark);
+}
+
+/* ========================== */
+/* BASKETBALL SPECIFIC BACKGROUND */
+/* ========================== */
+.background_gradient {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  background: linear-gradient(45deg, var(--davys-gray), var(--davys-gray), var(--cool-gray), var(--cream));
+  background-size: 300% 300%;
+  animation: colorShift 20s ease-in-out infinite;
+}
+
+@keyframes colorShift {
+  0% { background-position: 0 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0 50%; }
+}
+
+/* ========================== */
+/* NAVIGATION SYSTEM */
+/* ========================== */
+/* ========================= */
+/* NAVIGATION SYSTEM         */
+/* ========================= */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 240px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-top: 120px;
+  color: var(--text-light);
+  z-index: 100;
+  background: linear-gradient(135deg,
+    rgba(73, 73, 71, 0.4),
+    rgba(73, 73, 71, 0.3));
+  backdrop-filter: blur(15px);
+  border-right: 1px solid rgba(234, 239, 189, 0.2);
+}
+
+nav .logo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 240px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--spacing-md);
+  font-family: 'Oswald', sans-serif;
+  font-size: 2.2rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  color: var(--text-light);
+  background: rgba(73, 73, 71, 0.8);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(234, 239, 189, 0.3);
+  z-index: 101;
+  line-height: 1.2;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  width: 100%;
+  padding: 0 var(--spacing-md);
+}
+
+nav ul li a {
+  display: block;
+  width: 100%;
+  padding: 15px var(--spacing-md);
+  color: var(--text-light);
+  text-decoration: none;
+  font-weight: 500;
+  border-radius: var(--radius-sm);
+  position: relative;
+  overflow: hidden;
+  transition: all var(--transition-normal);
+}
+
+nav ul li a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(247, 142, 105, 0.2),
+    transparent);
+  transition: left var(--transition-normal);
+}
+
+nav ul li a:hover {
+  background: linear-gradient(135deg, var(--coral), var(--coral-dark));
+  color: var(--text-light);
+  transform: translateX(5px);
+  box-shadow: var(--shadow-md);
+}
+
+nav ul li a:hover::before {
+  left: 100%;
+}
+
+/* ========================== */
+/* MAIN LAYOUT */
+/* ========================== */
+main {
+  margin-left: 240px;
+  padding: var(--spacing-lg);
+  min-height: 100vh;
+  position: relative;
+  z-index: 10;
+}
+
+/* ========================== */
+/* BASKETBALL HERO SECTION */
+/* ========================== */
+.hero {
+  background: url('images/basketball/hero.jpg') center/cover no-repeat;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-light);
+  text-align: center;
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--spacing-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, 
+    rgba(0, 0, 0, 0.4), 
+    rgba(73, 73, 71, 0.6));
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.3);
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-md);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.hero-content h1 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 3.5rem;
+  margin-bottom: var(--spacing-sm);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hero-content p {
+  font-size: 1.3rem;
+  opacity: 0.9;
+}
+
+/* ========================== */
+/* TYPOGRAPHY */
+/* ========================== */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: 3rem;
+  color: var(--text-light);
+}
+
+h2 {
+  font-size: 2.2rem;
+  color: var(--text-light);
+  text-align: center;
+  margin: var(--spacing-lg) 0 var(--spacing-md);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+h3 {
+  font-size: 1.5rem;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-sm);
+}
+
+/* ========================== */
+/* SECTION STYLING */
+/* ========================== */
+section {
+  max-width: 1000px;
+  margin: var(--spacing-lg) auto;
+  padding: var(--spacing-lg);
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* ========================== */
+/* BASKETBALL CAREER SECTIONS */
+/* ========================== */
+.career-section {
+  background: linear-gradient(135deg, 
+    var(--cool-gray-light), 
+    var(--cool-gray));
+  color: var(--text-primary);
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.career-section:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
+}
+
+.career-section h3 {
+  color: var(--davys-gray-darker);
+  font-size: 1.8rem;
+  margin-bottom: var(--spacing-md);
+  border-bottom: 2px solid var(--coral);
+  padding-bottom: var(--spacing-sm);
+}
+
+/* ========================== */
+/* BASKETBALL STATISTICS */
+/* ========================== */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--spacing-md);
+  background: linear-gradient(135deg, 
+    var(--cream-light), 
+    var(--cream));
+  color: var(--text-primary);
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-md);
+  margin: var(--spacing-lg) auto;
+  max-width: 800px;
+  box-shadow: var(--shadow-md);
+}
+
+.stat {
+  text-align: center;
+  padding: var(--spacing-md);
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: var(--radius-sm);
+  transition: transform var(--transition-fast);
+}
+
+.stat:hover {
+  transform: scale(1.05);
+}
+
+.stat h3 {
+  font-size: 2.5rem;
+  color: var(--imperial-red);
+  margin-bottom: var(--spacing-xs);
+  font-weight: bold;
+}
+
+.stat p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ========================== */
+/* VIDEO EMBED */
+/* ========================== */
+.video-wrapper {
+  text-align: center;
+  margin: var(--spacing-lg) 0;
+  background: rgba(255, 255, 255, 0.9);
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+iframe {
+  border-radius: var(--radius-md);
+  width: 90%;
+  max-width: 600px;
+  height: 340px;
+  box-shadow: var(--shadow-lg);
+  transition: transform var(--transition-normal);
+}
+
+iframe:hover {
+  transform: scale(1.02);
+}
+
+/* ========================== */
+/* PHOTO GALLERY */
+/* ========================== */
+.photo-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--spacing-md);
+  justify-items: center;
+  margin: var(--spacing-lg) auto;
+  max-width: 1000px;
+}
+
+.photo-gallery img {
+  width: 100%;
+  max-width: 280px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-normal);
+  cursor: pointer;
+}
+
+.photo-gallery img:hover {
+  transform: scale(1.05) rotate(1deg);
+  box-shadow: var(--shadow-hover);
+}
+
+/* ========================== */
+/* ENHANCED SLIDESHOW */
+/* ========================== */
+.slideshow {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  height: 200px;
+  margin: var(--spacing-lg) auto;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.slideshow h1.lbTitle {
+  width: 100%;
+  text-align: center;
+  font-size: 2.4em;
+  font-family: 'Oswald', sans-serif;
+  margin: 0 0 var(--spacing-md) 0;
+  color: var(--text-light);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.slideshow .lbPrev, 
+.slideshow .lbNext {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background: rgba(0, 0, 0, 0.7);
+  color: var(--text-light);
+  font-size: 24px;
+  font-weight: bold;
+  top: 50%;
+  transform: translateY(-50%);
+  line-height: 50px;
+  text-align: center;
+  z-index: 10;
+  border-radius: 50%;
+  cursor: pointer;
+  user-select: none;
+  transition: all var(--transition-normal);
+}
+
+.slideshow .lbPrev:hover, 
+.slideshow .lbNext:hover {
+  background: var(--coral);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.slideshow .lbPrev { 
+  left: var(--spacing-md); 
+}
+
+.slideshow .lbNext { 
+  right: var(--spacing-md); 
+}
+
+.slideshow .lbImages {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.slideshow .lbCounter {
+  position: absolute;
+  z-index: 1;
+  width: 70px;
+  height: 26px;
+  line-height: 20px;
+  font-size: 18px;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: var(--radius-sm);
+  text-align: center;
+  color: var(--cream);
+  top: var(--spacing-sm);
+  left: var(--spacing-sm);
+  padding: 3px;
+  user-select: none;
+  font-family: 'Oswald', sans-serif;
+  backdrop-filter: blur(5px);
+}
+
+.slideshow .lbPlay {
+  position: absolute;
+  top: 75%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  font-size: 2.2em;
+  width: 60px;
+  height: 60px;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-light);
+  cursor: pointer;
+  user-select: none;
+  transition: all var(--transition-normal);
+  backdrop-filter: blur(5px);
+}
+
+.slideshow .lbPlay:hover {
+  background: var(--coral);
+  transform: translateX(-50%) scale(1.1);
+}
+
+.lbImages img {
+  display: block;
+  width: 230px;
+  height: auto;
+  margin-right: 13px;
+  filter: opacity(0.8);
+  cursor: pointer;
+  outline: 2px solid var(--coral);
+  box-shadow: var(--shadow-md);
+  user-select: none;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-normal);
+}
+
+.lbImages img:hover {
+  filter: opacity(1);
+  transform: scale(1.05);
+  outline-color: var(--imperial-red);
+}
+
+/* ========================== */
+/* ENHANCED LIGHTBOX OVERLAY */
+/* ========================== */
+#lbOverlay {
+  position: fixed;
+  z-index: 1000;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(10px);
+}
+
+#lbOverlay figure {
+  display: block;
+  width: 80%;
+  max-width: 800px;
+}
+
+#lbOverlay figure img {
+  display: block;
+  margin: auto;
+  max-width: 90vw;
+  max-height: 90vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  box-shadow: var(--shadow-lg);
+  border-radius: var(--radius-md);
+  animation: zoomIn 0.5s ease-in-out;
+}
+
+#lbOverlay figure figcaption {
+  text-align: center;
+  font-size: 1.25em;
+  color: var(--cream);
+  margin-top: var(--spacing-md);
+  font-family: 'Oswald', sans-serif;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+#lbOverlay #lbOverlayClose {
+  position: absolute;
+  top: var(--spacing-md);
+  right: var(--spacing-lg);
+  color: var(--cream);
+  font-size: 40px;
+  cursor: pointer;
+  user-select: none;
+  width: 60px;
+  height: 60px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-normal);
+}
+
+#lbOverlay #lbOverlayClose:hover {
+  background: var(--imperial-red);
+  transform: scale(1.1);
+}
+
+/* ========================== */
+/* FOOTER */
+/* ========================== */
+footer {
+  text-align: center;
+  padding: var(--spacing-md);
+  color: var(--text-light);
+  background: transparent;
+  font-family: 'Oswald', sans-serif;
+  margin-top: var(--spacing-xl);
+}
+
+/* ========================== */
+/* RESPONSIVE DESIGN - FIXED */
+/* ========================== */
+@media (max-width: 768px) {
+  nav {
+    width: 200px;
+  }
+  
+  nav .logo {
+    width: 200px;
+    font-size: 1.8rem;
+  }
+  
+  main {
+    margin-left: 200px;
+    padding: var(--spacing-md);
+  }
+  
+  .hero-content h1 {
+    font-size: 2.5rem;
+  }
+  
+  .stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  iframe {
+    height: 250px;
+  }
+}
+
+@media (max-width: 600px) {
+  nav {
+    width: 100%;
+    height: auto;
+    position: static; /* Changed from relative to static */
+    padding: 0;
+    flex-direction: column;
+    align-items: stretch;
+    background: rgba(73, 73, 71, 0.95);
+    backdrop-filter: blur(15px);
+    border-bottom: 2px solid rgba(234, 239, 189, 0.3);
+  }
+  
+  nav .logo {
+    position: static; /* Changed from fixed/relative to static */
+    width: 100%;
+    text-align: center;
+    margin: 0;
+    padding: var(--spacing-md);
+    border-bottom: 1px solid rgba(234, 239, 189, 0.2);
+    background: rgba(73, 73, 71, 0.3);
+  }
+  
+  nav ul {
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: var(--spacing-md);
+    gap: var(--spacing-xs);
+  }
+  
+  nav ul li {
+    flex: 1;
+    min-width: 120px;
+  }
+  
+  nav ul li a {
+    padding: var(--spacing-sm);
+    text-align: center;
+    font-size: 0.9rem;
+  }
+  
+  main {
+    margin-left: 0;
+    padding: var(--spacing-md);
+    margin-top: 0;
+  }
+  
+  .hero {
+    height: 300px;
+    margin-top: var(--spacing-sm);
+  }
+  
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+  
+  .stats {
+    grid-template-columns: 1fr;
+  }
+  
+  .photo-gallery {
+    grid-template-columns: 1fr;
+  }
+  
+  .slideshow {
+    height: 150px;
+  }
+  
+  iframe {
+    height: 200px;
+  }
+}
+
+/* ========================== */
+/* ANIMATIONS */
+/* ========================== */
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* ========================== */
+/* UTILITY CLASSES */
+/* ========================== */
+.fade-in-up {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.pulse-hover:hover {
+  animation: pulse 0.6s ease-in-out;
+}
+
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.mb-sm { margin-bottom: var(--spacing-sm); }
+.mb-md { margin-bottom: var(--spacing-md); }
+.mb-lg { margin-bottom: var(--spacing-lg); }
+
+.mt-sm { margin-top: var(--spacing-sm); }
+.mt-md { margin-top: var(--spacing-md); }
+.mt-lg { margin-top: var(--spacing-lg); }

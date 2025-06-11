@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="author" content="Deshawn Goodwyn">
+        <meta name="description" content="Deshawn Goodwyn Piano Career">
+        
+        <title>
+            Deshawn Goodwyn Piano Career
+        </title>
+
+        <script src="portfolio_website.js" defer></script>
+        <link rel="stylesheet" href="piano_css.css">
+        <link href="https://fonts.googleapis.com/css2?family=Imbue:opsz,wght@10..100,400&family=Oswald:wght@400;500;600&family=Saira:wght@400;500;600&family=Titillium+Web:wght@400;600&display=swap" rel="stylesheet">
+    </head>
+
+    <body>
+        <div class="background_gradient"></div>
+        <div id="circularcursor"></div>
+
+        <nav>
+            <div class="logo">Deshawn Goodwyn</div>
+            <ul>
+                <li><a href="portfolio_website.html">Home</a></li>
+                <li><a href="programmer.html">Programmer</a></li>
+                <li><a href="basketball.html">Basketball</a></li>
+            </ul>
+        </nav>
+
+        <main>
+            <header class="hero">
+            <div class="hero-content">
+                <h1>Deshawn Goodwyn</h1>
+                <p>Professional Pianist • Musician • Performer</p>
+                </div>
+            </header>
+
+            <h2>About my Piano Career</h2>
+
+            <article>
+                <style></style>
+                <p>
+                    Music is a key aspect of my life and I can not imagine life without it. With the right song selections, music mentally prepares me for whatever task is at hand.
+                    It helps me focus, get pumped for any athletic competitions I participate in, relax, and feel any emotions I need to go through at the time. 
+                    At a young age, this love for music expanded into the desire to create it on my own. Luckily for me, I’ve been surrounded by great sources of inspiration my whole life.
+                    
+                    <br><br>
+                    The beginning of my journey to play music began within the church. I’ve attended a small Catholic Church since I was a baby, and the only sources of music came from the choir and a single piano. Watching the pianist was the highlight of the services, and it sparked my curiosity. Eventually, I decided to ask for a keyboard of my own. After a lot of pleading, my parents got a simple one for me. I came to love everything about the instrument and played it at every opportunity available to me. It especially felt rewarding to learn an instrument, as most members of my family are musical as well. Showing off new songs and tricks to my family was, and still is, an incredible feeling.
+
+                    <br><br>
+                    That was when I was 10 years old. Even now, after years of playing, my joy in playing the piano has only increased.
+                    With more skill, I can truly use the piano as something more than just a hobby.
+                    It has become a form of expression, a place to de-stress, and an instrument to create beautiful music.
+
+                </p>
+            </article>
+
+            <section class="photo-gallery">
+                <img src="images\piano\piano_article.jpg" alt="Deshawn Playing Piano" class="photo-placeholder">
+                <img src="images\piano\piano_full.jpg" alt="Deshawn Playing Piano" class="photo-placeholder">
+                <img src="images\piano\piano_smile.jpg" alt="Deshawn Playing Piano" class="photo-placeholder">
+            </section>
+
+             <section id="booking">
+                <h2>Contact & Book With Me</h2>
+                <form id="signupForm" novalidate>
+                    <label>
+                        Name:
+                        <input type="text" id="name" name="name" required minlength="3" />
+                        <div id="usernameError" class="error"></div>
+                    </label>
+                    <label>
+                        Email:
+                        <input type="email" id="email" name="email" required />
+                        <div id="emailError" class="error"></div>
+                    </label>
+                    <label>
+                        Extra Details:
+                        <textarea id="details" placeholder="Additional details go here..." style="height: 200px; width: 300px;"></textarea>
+                    </label>
+
+                    <label>
+                        Choose a Meeting Time:
+                        <input type="datetime-local" id="time" name="time" required />
+                        <div id="timeError" class="error"></div>
+                    </label>
+
+                    <br /><br />
+                    <button type="submit">Book Appointment</button>
+                </form>
+            </section>
+        </main>
+
+        <footer>
+            &copy; 2025 Deshawn Goodwyn
+        </footer>
+    </body>
+
+</html>
